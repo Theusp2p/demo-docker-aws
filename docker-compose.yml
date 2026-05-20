@@ -1,9 +1,11 @@
+version: '3.9'
 
 services:
   demo-docker-aws:
     build: .
     container_name: demo-docker-aws
     ports:
-      # Mapeia a porta 80 da máquina EC2 (Internet) para a porta 8080 do container (Spring Boot)
       - "80:8080"
+    volumes:
+      - ./dados-banco:/app/data
     restart: unless-stopped
