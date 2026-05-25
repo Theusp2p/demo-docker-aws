@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/motosdb
+    url: jdbc:postgresql://db:5432/motosdb
     username: postgres
-    password: postgres
+    password: senha_super_segura
   jpa:
     hibernate:
       ddl-auto: update
