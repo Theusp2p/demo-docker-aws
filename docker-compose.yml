@@ -1,11 +1,27 @@
 version: '3.9'
 
 services:
-  demo-docker-aws:
+  db:
+    image: postgres:15-alpine
+    container_name: motos-postgres
+    environment:
+      - POSTGRES_DB=motosdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  app:
     build: .
-    container_name: demo-docker-aws
+    container_name: motos-app
+    depends_on:
+      - db
     ports:
       - "80:8080"
-    volumes:
-      - ./dados-banco:/app/data
     restart: unless-stopped
+
+volumes:
+  postgres-data:
